@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<robot name="Myfirst">
+    <link name="world"/>
+        <link name="base_link">
+            <inertial>
+                <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="1.0 0.3 1.0"/>
+                </geometry>
+                <material name="blue">
+                    <color rgba="0.0 0.0 1.0 0.8"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.5" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="1.0 0.3 1.0"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="Base" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+
+
+    <link name="link2">
+            <inertial>
+                <origin xyz="0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.25"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.25"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint1" type="continuous">
+      <parent link="base_link"/>
+      <child link="link2"/>
+      <origin xyz="0.35 0 1.225" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+    
+    
+    <link name="link3">
+            <inertial>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.28"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.28"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint2" type="continuous">
+      <parent link="base_link"/>
+      <child link="link3"/>
+      <origin xyz="0.0 0.0 1.24" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <link name="link4">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.26"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.26"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint3" type="continuous">
+      <parent link="base_link"/>
+      <child link="link4"/>
+      <origin xyz="-0.35 0.0 1.23" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <link name="link5">
+            <inertial>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.37"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.37"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint4" type="continuous">
+      <parent link="base_link"/>
+      <child link="link5"/>
+      <origin xyz="-0.685 0.0 0.4" rpy="0.0 1.57 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <link name="link6">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.55"/>
+                </geometry>
+                <material name="green">
+                    <color rgba="0.0 1.0 0.0 0.8"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.55"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint5" type="continuous">
+      <parent link="link2"/>
+      <child link="link6"/>
+      <origin xyz="0.0 0 0.5" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <link name="link7">
+            <inertial>
+                <origin xyz="0.0 0 0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.57"/>
+                </geometry>
+                <material name="green">
+                    <color rgba="0.0 1.0 0.0 0.8"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.57"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint6" type="continuous">
+      <parent link="link3"/>
+      <child link="link7"/>
+      <origin xyz="0.0 0 0.525" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <link name="link8">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.515"/>
+                </geometry>
+                <material name="green">
+                    <color rgba="0.0 1.0 0.0 0.8"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.515"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint7" type="continuous">
+      <parent link="link4"/>
+      <child link="link8"/>
+      <origin xyz="0.0 0 0.4875" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <link name="link9">
+            <inertial>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.37"/>
+                </geometry>
+                <material name="green">
+                    <color rgba="0.0 1.0 0.0 0.8"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.15" length="0.37"/>
+                </geometry>
+            </collision>
+    </link>
+
+    <joint name="joint8" type="continuous">
+      <parent link="link5"/>
+      <child link="link9"/>
+      <origin xyz="0.0 0 -0.47" rpy="0.0 0.0 0.0"/>
+      <axis xyz="1.0 0.0 0.0"/>
+    </joint>
+
+
+    <gazebo>
+       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+         <robotNamespace>/</robotNamespace>
+       </plugin>
+    </gazebo>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint1">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor1">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint2">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor2">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint3">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor3">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint4">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor4">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint5">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor5">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint6">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor6">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint7">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor7">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+
+    <transmission>
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint8">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="Motor8">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+         <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    <transmission>
+
+</robot>

@@ -1,0 +1,8 @@
+prefix=/home/anant/Make-shift_Manipulator/workspace_master/install
+
+Name: msm_master
+Description: Description of msm_master
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

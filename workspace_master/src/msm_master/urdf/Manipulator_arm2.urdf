@@ -1,0 +1,364 @@
+<?xml version="1.0"?>
+<robot name="Manipulator_arm2">
+    <link name="world"/>
+        <link name="base_link">
+            <inertial>
+                <origin xyz="0.0 0.0 0.075" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.0027"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.075" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.5 0.4 0.15"/>
+                </geometry>
+                <material name="red">
+                    <color rgba="1.0 0.0 0.0 1.0"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.075" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.5 0.4 0.15"/>
+                </geometry>
+            </collision>
+        </link>
+
+    <joint name="joint" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+
+
+
+    
+
+
+    <link name="link1">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0325" rpy="0.0 0.0 0.0"/>
+            <mass value="1.0"/>
+            <inertia ixx="27.0" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0325" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0375" length="0.065"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0325" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.0375" length="0.035"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint1" type="revolute">
+        <origin xyz="0.0 0.0 0.15" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="link1"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14" upper="0.0" effort="10.0" velocity="3.0"/>
+    </joint>
+
+    <transmission name="trans1">
+       <type>transmission_interface/SimpleTransmission</type>
+       <actuator name="motor1">
+         <mechanicalReduction>1</mechanicalReduction>
+       </actuator>
+       <joint name="joint1">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+       </joint>
+    </transmission>
+
+
+
+
+
+    <link name="Rlink1">
+        <inertial>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <mass value="0.0001"/>
+            <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.0027"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.04"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.04"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="Rjoint1" type="fixed">
+        <origin xyz="0.0525 0.0 0.06" rpy="0.0 0.0 0.0"/>
+        <parent link="link1"/>
+        <child link="Rlink1"/>
+    </joint>
+
+
+
+
+    <link name="link2">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0775" rpy="0.0 0.0 0.0"/>
+            <mass value="1.0"/>
+            <inertia ixx="27.0" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0775" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.155"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0775" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.155"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="joint2" type="revolute">
+        <origin xyz="-0.055 0.0 0.035" rpy="0.0 0.0 0.0"/>
+        <parent link="Rlink1"/>
+        <child link="link2"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.04" upper="1.04" effort="10.0" velocity="3.0"/> 
+    </joint>
+
+
+    <transmission name="trans2">
+       <type>transmission_interface/SimpleTransmission</type>
+       <actuator name="motor2">
+         <mechanicalReduction>1</mechanicalReduction>
+       </actuator>
+       <joint name="joint2">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+       </joint>
+    </transmission>
+
+
+
+
+    <link name="Rlink2">
+        <inertial>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <mass value="0.0001"/>
+            <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.0027"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.04"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.04"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="Rjoint2" type="fixed">
+        <origin xyz="0.055 0.0 0.15" rpy="0.0 0.0 0.0"/>
+        <parent link="link2"/>
+        <child link="Rlink2"/>
+    </joint>
+
+
+
+
+
+    <link name="link3">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+            <mass value="1.0"/>
+            <inertia ixx="27.0" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.075"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.075"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="joint3" type="revolute">
+        <origin xyz="-0.055 0.0 0.035" rpy="0.0 0.0 0.0"/>
+        <parent link="Rlink2"/>
+        <child link="link3"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.57" upper="1.57" effort="10.0" velocity="3.0"/>
+    </joint>
+
+
+    <transmission name="trans3">
+       <type>transmission_interface/SimpleTransmission</type>
+       <actuator name="motor3">
+         <mechanicalReduction>1</mechanicalReduction>
+       </actuator>
+       <joint name="joint3">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+       </joint>
+    </transmission>
+
+
+
+
+    <link name="Rlink3">
+        <inertial>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <mass value="0.0001"/>
+            <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.0027"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.04"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.015" length="0.04"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="Rjoint3" type="fixed">
+        <origin xyz="0.055 0.0 0.07" rpy="0.0 0.0 0.0"/>
+        <parent link="link3"/>
+        <child link="Rlink3"/>
+    </joint>
+
+
+
+
+    <link name="link4">
+        <inertial>
+            <origin xyz="0.0 0.0 0.06" rpy="0.0 0.0 0.0"/>
+            <mass value="1.0"/>
+            <inertia ixx="27.0" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.06" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.12"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.06" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.12"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="joint4" type="revolute">
+        <origin xyz="-0.055 0.0 0.039" rpy="0.0 0.0 0.0"/>
+        <parent link="Rlink3"/>
+        <child link="link4"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="-1.57" upper="1.57" effort="10.0" velocity="3.0"/>
+    </joint>
+
+
+    <transmission name="trans4">
+       <type>transmission_interface/SimpleTransmission</type>
+       <actuator name="motor4">
+         <mechanicalReduction>1</mechanicalReduction>
+       </actuator>
+       <joint name="joint4">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+       </joint>
+    </transmission>
+
+
+
+
+    <link name="link5">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+            <mass value="0.5"/>
+            <inertia ixx="27" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.0027"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.075"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0375" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.075"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="joint5" type="fixed">
+        <origin xyz="0.0 0.0 0.12" rpy="0.0 0.0 0.0"/>
+        <parent link="link4"/>
+        <child link="link5"/>
+    </joint> 
+
+
+
+
+    <gazebo>
+       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+         <robotNamespace>/</robotNamespace>
+       </plugin>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher">
+        <jointName>joint1</jointName>
+      </plugin>  
+    </gazebo>
+</robot>

@@ -1,0 +1,2 @@
+msm_master
+-DCATKIN_DEVEL_PREFIX=/home/anant/Make-shift_Manipulator/workspace_master/devel -DCMAKE_INSTALL_PREFIX=/home/anant/Make-shift_Manipulator/workspace_master/install -G Unix Makefiles

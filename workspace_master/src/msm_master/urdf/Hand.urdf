@@ -1,0 +1,148 @@
+#!/usr/bin/env python
+import rospy
+from trajectory_msgs.msg import JointTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
+from std_msgs.msg import Int64
+
+global msg1
+msg1=JointTrajectory()
+msg1.joint_names=["joint1"]
+jtp = JointTrajectoryPoint()
+jtp.positions=[0.5]
+jtp.time_from_start=[1.0]
+
+def main():
+    pub=rospy.Publisher('/arm_controller/command' , JointTrajectory , queue_size=10)
+    rospy.init_node('2cylmove' , anonymous=True)
+    rate = rospy.Rate(10)
+    while not rospy.is_shutdown():
+        inp=raw_input("enter the direc: ")
+        inps=str(inp)
+        if inps=="w":
+            msg1.points.append(jtp)
+        rate.sleep()
+
+if __name__=='__main__':
+    main()
+
+
+
+
+
+
+
+
+#!/usr/bin/env python
+import rospy
+from trajectory_msgs.msg import JointTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
+from std_msgs.msg import Float64
+
+global msg1
+msg1=JointTrajectory()
+global jtp
+jtp=JointTrajectoryPoint()
+
+def main():
+    pub=rospy.Publisher('/arm_controller/command' , JointTrajectory , queue_size=1)
+    rospy.init_node('cylmove' , anonymous=True)
+    rate = rospy.Rate(10)
+    inp=raw_input("enter the direc: ")
+    inps=str(inp)
+    if inps=="w":
+        msg1.joint_names.append("joint1")
+        jtp.positions.append(0.5)
+        jtp.time_from_start = [1]
+        msg1.points.append(jtp)
+        pub.publish(msg1)
+    rate.sleep()
+
+if __name__=='__main__':
+    main()
+
+
+
+
+
+
+
+
+
+
+
+
+    <link name="Rlink1">
+        <inertial>
+            <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
+            <mass value="0.001"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.015 0.035 0.03"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.015 0.035 0.03"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="Rjoint1" type="fixed">
+        <origin xyz="0.09 0.0 0.035" rpy="0.0 0.0 0.0"/>
+        <parent link="link1"/>
+        <child link="Rlink1"/>
+    </joint>
+
+
+
+    
+   <link name="link2">
+        <inertial>
+            <origin xyz="0.04 0.0 0.08" rpy="0.0 0.0 0.0"/>
+            <mass value="1.0"/>
+            <inertia ixx="27.0" ixy="0.0" ixz="0.0" iyy="0.0027" iyz="0.0" izz="0.005"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.04 0.0 0.08" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.16"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.04 0.0 0.8" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="0.04" length="0.16"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+    <joint name="joint2" type="revolute">
+        <origin xyz="0.015 0.0 0.025" rpy="0.0 0.0 0.0"/>
+        <parent link="Rlink1"/>
+        <child link="link2"/>
+        <axis xyz="1.0 0.0 0.0"/>
+        <limit lower="0.52" upper="2.09" effort="0.0" velocity="0.0"/>
+    </joint>
+
+
+    <transmission name="trans2">
+       <type>transmission_interface/SimpleTransmission</type>
+       <actuator name="motor2">
+         <mechanicalReduction>1</mechanicalReduction>
+       </actuator>
+       <joint name="joint2">
+         <hardwareInterface>PositionJointInterface</hardwareInterface>
+       </joint>
+    </transmission> -->
